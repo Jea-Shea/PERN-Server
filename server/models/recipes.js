@@ -1,7 +1,5 @@
-const sequelize = require("../db");
-
 module.exports = (sequelize, DataTypes) => {
-    const Recipe = sequalize.define('user', {
+    const Recipe = sequelize.define('recipe', {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -10,22 +8,22 @@ module.exports = (sequelize, DataTypes) => {
         ingredients: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
+            unique: false
         },        
         instructions: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
+            unique: false
         },
         notes: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
+            unique: false
         },
-        notes: {
+        favorite: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
-            unique: true
+            unique: false
         },
     })
     return Recipe;
