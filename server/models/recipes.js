@@ -1,7 +1,7 @@
 const sequelize = require("../db");
 
 module.exports = (sequelize, DataTypes) => {
-    const Recipe = sequalize.define('user', {
+    const Recipe = sequelize.define('recipe', {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
