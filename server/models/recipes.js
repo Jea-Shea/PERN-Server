@@ -1,5 +1,3 @@
-const sequelize = require("../db");
-
 module.exports = (sequelize, DataTypes) => {
     const Recipe = sequelize.define('recipe', {
         name: {
@@ -12,12 +10,13 @@ module.exports = (sequelize, DataTypes) => {
         },        
         instructions: {
             type: DataTypes.STRING,
-        },
-        hasNotes: {
-            type: DataTypes.BOOLEAN,
+            allowNull: false,
         },
         notes: {
             type: DataTypes.STRING,
+        },
+        favorite: {
+            type: DataTypes.BOOLEAN,
         },
     })
     return Recipe;

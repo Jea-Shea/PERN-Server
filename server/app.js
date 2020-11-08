@@ -12,6 +12,6 @@ app.use("/user", user);
 let recipe = require("./controllers/recipecontroller");
 app.use("/recipe", recipe);
 
-app.listen(8080, function () {
-  console.log("App is listening on port 8080 ");
+app.listen(3000, function () {
+  console.log("App is listening on port 3000");
 });
