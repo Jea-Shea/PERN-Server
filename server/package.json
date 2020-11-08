@@ -1,18 +1,14 @@
 {
-  "name": "sharknado-recipes",
+  "name": "recipe-server",
   "version": "1.0.0",
   "description": "recipe server",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "dev": "nodemon"
+    "start": "node app.js"
   },
-  "author": "jordan",
+  "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^1.19.4"
-  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
@@ -21,8 +17,7 @@
     "pg": "^8.4.0",
     "sequelize": "^5.22.3"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Jea-Shea/PERN-Server.git"
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
