@@ -6,6 +6,8 @@ let recipe = require('./controllers/recipecontroller')
 sequelize.sync();
 //sequelize.sync({force: true})
 
+app.use(express.json());
+
 app.use('/recipe', recipe)
 
 app.listen(3000, function () {
