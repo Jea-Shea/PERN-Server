@@ -1,13 +1,17 @@
-let express = require("express");
+require("dotenv").config();
+const express = require("express");
 const app = express();
-let sequelize = require('./db');
-let recipe = require('./controllers/recipecontroller')
+const database = require("./db");
 
-sequelize.sync();
-//sequelize.sync({force: true})
+database.sync({ force: true });
 
-app.use('/recipe', recipe)
+app.use(express.json());
+
+let user = require("./controllers/usercontroller");
+app.use("/user", user);
+let recipe = require("./controllers/recipecontroller");
+app.use("/recipe", recipe);
 
 app.listen(3000, function () {
-    console.log("App is listening on port 3000");
-})
+  console.log("App is listening on port 3000");
+});
