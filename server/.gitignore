@@ -1,1 +1,2 @@
-node_modules/git
+.env
+node_modules/

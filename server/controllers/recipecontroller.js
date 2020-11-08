@@ -4,11 +4,11 @@ const Recipe = require('../db').import('../models/recipes');
 
 router.post('/create', (req,res) => {
     const recipeFromRequest   = {
-        recipeName: req.body.name,
-        recipeIngredients: req.body.ingredients,
-        recipeInstructions: req.body.instructions,
-        recipeNotes: req.body.notes,
-        recipeFavorite: req.body.favorite,
+        name: req.body.recipe.name,
+        ingredients: req.body.recipe.ingredients,
+        instructions: req.body.recipe.instructions,
+        notes: req.body.recipe.notes,
+        favorite: req.body.recipe.favorite,
     }
 
     Recipe.create(recipeFromRequest)
@@ -18,10 +18,6 @@ router.post('/create', (req,res) => {
 
 router.get('/search', function(req,res){
     res.send('Add API recipe search here')
-});
-
-router.get('/save', function(req,res){
-    res.send('send it to the database here?')
 });
 
 router.get('/update', function(req,res){
