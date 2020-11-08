@@ -5,27 +5,19 @@ module.exports = (sequelize, DataTypes) => {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
         },
         ingredients: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
         },        
         instructions: {
             type: DataTypes.STRING,
-            allowNull: false,
-            unique: true
+        },
+        hasNotes: {
+            type: DataTypes.BOOLEAN,
         },
         notes: {
             type: DataTypes.STRING,
-            allowNull: false,
-            unique: true
-        },
-        notes: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            unique: true
         },
     })
     return Recipe;
