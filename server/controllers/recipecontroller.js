@@ -6,9 +6,7 @@ router.post('/create', (req,res) => {
     const recipeFromRequest   = {
         name: req.body.recipe.name,
         ingredients: req.body.recipe.ingredients,
-        instructions: req.body.recipe.instructions,
-        notes: req.body.recipe.notes,
-        favorite: req.body.recipe.favorite,
+        instructions: req.body.recipe.instructions
     }
 
     Recipe.create(recipeFromRequest)
@@ -24,8 +22,11 @@ router.get('/update', function(req,res){
     res.send('Add notes and update recipes that were saved')
 });
 
-router.get('/delete', function(req,res){
-    res.send('Get rid of recipes no longer wanted by user')
+router.delete('/:id', function(req,res){
+    res.send('Get rid of recipes no longer wanted by user');
+    Recipe.destroy({ where: { id: req.params.id } }) 
+    .then(result => res.status(200).json(result) )
+    .catch(err => res.status(500).json({ error:err }))
 });
 
 module.exports = router
