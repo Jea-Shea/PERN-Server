@@ -4,8 +4,9 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
 router.post("/signup", (req, res) => {
-  console.log(req.body.user.email);
+  console.log(req.body.user.name);
   User.create({
+    name: req.body.user.name,
     email: req.body.user.email,
     passwordHash: bcrypt.hashSync(req.body.user.passwordHash, 13),
     groceryList: ""
