@@ -18,6 +18,14 @@ router.get('/search', function(req,res){
     res.send('Add API recipe search here')
 });
 
+router.get('/', function(req,res){
+    Recipe.findAll()
+    .then(recipes => response.status(200).json(recipes)) //200 means okay
+    .catch(err => response.status(500).json({ //500 internal server errpr
+        error: err
+    }))
+});
+
 router.get('/update', function(req,res){
     res.send('Add notes and update recipes that were saved')
 });
