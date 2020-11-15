@@ -20,8 +20,8 @@ router.get('/search', function(req,res){
 
 router.get('/', function(req,res){
     Recipe.findAll()
-    .then(recipes => response.status(200).json(recipes)) //200 means okay
-    .catch(err => response.status(500).json({ //500 internal server errpr
+    .then(recipes => res.status(200).json(recipes)) //200 means okay
+    .catch(err => res.status(500).json({ //500 internal server errpr
         error: err
     }))
 });
@@ -37,4 +37,4 @@ router.delete('/:id', function(req,res){
     .catch(err => res.status(500).json({ error:err }))
 });
 
-module.exports = router
+module.exports = router;
