@@ -2,6 +2,7 @@ const router = require("express").Router();
 const User = require("../db").import("../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const validateSession = require("../middleware/validatesession");
 
 router.post("/signup", (req, res) => {
   console.log(req.body.user.name);
@@ -60,4 +61,21 @@ router.post("/login", (req, res) => {
     .catch((err) => res.status(500).json({ error: err }));
 });
 
+router.get("/groceries", validateSession, (req, res) => {
+  let id = req.params.id;
+  User.findOne({ where: { id: id } })
+    .then((user) => res.status(200).json(user))
+    .catch((err) => res.status(500).json({ error: err }));
+});
+
+router.put("/groceries/update", validateSession, (req, res) => {
+  let id = req.params.id;
+  const updateGroceries = {
+    groceryList: req.body.user.groceryList,
+  };
+  User.update(updateGroceries, { where: { id: id } })
+    .then((user) => res.status(200).json(user))
+    .catch((err) => res.status(500).json({ error: err }));
+});
+ 
 module.exports = router;
