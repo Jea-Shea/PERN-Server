@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const database = require("./db");
 
-database.sync({ force: true });
+database.sync();
 
 app.use(express.json());
 

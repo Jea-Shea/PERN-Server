@@ -9,7 +9,6 @@ router.post("/signup", (req, res) => {
     name: req.body.user.name,
     email: req.body.user.email,
     passwordHash: bcrypt.hashSync(req.body.user.passwordHash, 13),
-    groceryList: ""
   })
     .then(
       (createSuccess = (user) => {

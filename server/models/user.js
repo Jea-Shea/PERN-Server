@@ -14,11 +14,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     groceryList: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: true,
     },
     favorites: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
     },
   });
 };
