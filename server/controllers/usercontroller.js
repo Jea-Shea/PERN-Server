@@ -64,7 +64,7 @@ router.post("/login", (req, res) => {
 router.get("/groceries", validateSession, (req, res) => {
   let id = req.user.id;
   User.findOne({ where: { id: id } })
-    .then((user) => res.status(200).json(user))
+    .then((user) => res.status(200).json(user.groceries))
     .catch((err) => res.status(500).json({ error: err }));
 });
 
@@ -81,7 +81,7 @@ router.put("/groceries/update", validateSession, (req, res) => {
 router.get("/favorites", validateSession, (req, res) => {
   let id = req.user.id;
   User.findOne({ where: { id: id } })
-    .then((user) => res.status(200).json(user))
+    .then((user) => res.status(200).json(user.favorites))
     .catch((err) => res.status(500).json({ error: err }));
 });
 
