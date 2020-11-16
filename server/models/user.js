@@ -13,9 +13,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    groceryList: {
+    groceries: {
       type: DataTypes.ARRAY(DataTypes.STRING),
-      allowNull: true,
     },
     favorites: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
