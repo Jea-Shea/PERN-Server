@@ -4,9 +4,9 @@ const Recipe = require('../db').import('../models/recipes');
 
 router.post('/create', (req,res) => {
     const recipeFromRequest   = {
-        name: req.body.recipe.name,
-        ingredients: req.body.recipe.ingredients,
-        instructions: req.body.recipe.instructions
+        name: req.body.recipes.name,
+        ingredients: req.body.recipes.ingredients,
+        instructions: req.body.recipes.instructions
     }
 
     Recipe.create(recipeFromRequest)
