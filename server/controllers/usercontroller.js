@@ -5,7 +5,6 @@ const bcrypt = require("bcryptjs");
 const validateSession = require("../middleware/validatesession");
 
 router.post("/signup", (req, res) => {
-  console.log(req.body.user.name);
   User.create({
     name: req.body.user.name,
     email: req.body.user.email,
