@@ -5,11 +5,11 @@ const Recipe = require('../db').import('../models/recipes');
 
 router.post("/create", (req, res) => {
   const recipeFromRequest = {
-    name: req.body.recipe.name,
-    ingredients: req.body.recipe.ingredients,
-    instructions: req.body.recipe.instructions,
-    notes: req.body.recipe.notes,
-    favorite: req.body.recipe.favorite,
+    name: req.body.recipes.name,
+    ingredients: req.body.recipes.ingredients,
+    instructions: req.body.recipes.instructions,
+    notes: req.body.recipes.notes,
+    favorite: req.body.recipes.favorite,
     owner_id: req.user.id
   };
 
@@ -28,9 +28,9 @@ router.get('/save', function(req,res){
 
 router.put('/update/:entryId', validateSession, function (req, res) {
   const updateRecipeEntry = {
-    name: req.body.recipe.name,
-    ingredients: req.body.recipe.ingredients,
-    instructions: req.body.recipe.instructions,
+    name: req.body.recipes.name,
+    ingredients: req.body.recipes.ingredients,
+    instructions: req.body.recipes.instructions
   };
 
   const query = { where: { id: req.recipe.id, owner_id: req.user.id }};
@@ -41,7 +41,7 @@ router.put('/update/:entryId', validateSession, function (req, res) {
 });
 
 router.delete('/delete/:id', validateSession, function (req, res) {
-  const query = { where: { id: req.params.id, owner: req.user.id }};
+  const query = { where: { id: req.body.recipes.id, owner: req.user.id }};
 
   Recipe.destroy(query)
       .then(() => res.status(200).json({ message: "Recipe Entry Removed!"}))
