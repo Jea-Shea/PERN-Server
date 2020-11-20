@@ -28,12 +28,12 @@ router.get('/save', function(req,res){
 
 router.put('/update/:entryId', validateSession, function (req, res) {
   const updateRecipeEntry = {
-      title: req.body.journal.title,
-      date: req.body.journal.date,
-      entry: req.body.journal.entry,
+    name: req.body.recipe.name,
+    ingredients: req.body.recipe.ingredients,
+    instructions: req.body.recipe.instructions,
   };
 
-  const query = { where: { id: req.params.entryId, owner_id: req.user.id }};
+  const query = { where: { id: req.recipe.id, owner_id: req.user.id }};
 
   Recipe.update(updateRecipeEntry, query)
       .then((recipes) => res.status(200).json(recipes))
