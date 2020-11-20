@@ -1,20 +1,8 @@
-<<<<<<< Updated upstream
-let express = require('express');
-=======
 let express = require("express");
 let validateSession = require('../middleware/validatesession')
->>>>>>> Stashed changes
 const router = express.Router();
 const Recipe = require('../db').import('../models/recipes');
 
-<<<<<<< Updated upstream
-router.post('/create', (req,res) => {
-    const recipeFromRequest   = {
-        name: req.body.recipe.name,
-        ingredients: req.body.recipe.ingredients,
-        instructions: req.body.recipe.instructions,
-}
-=======
 router.post("/create", (req, res) => {
   const recipeFromRequest = {
     name: req.body.recipe.name,
@@ -24,7 +12,6 @@ router.post("/create", (req, res) => {
     favorite: req.body.recipe.favorite,
     owner_id: req.user.id
   };
->>>>>>> Stashed changes
 
     Recipe.create(recipeFromRequest)
     .then(recipe => res.status(200).json(recipe))
@@ -47,9 +34,6 @@ router.get('/delete', function(req,res){
     res.send('Get rid of recipes no longer wanted by user')
 });
 
-<<<<<<< Updated upstream
-module.exports = router
-=======
 router.put('/update/:entryId', validateSession, function (req, res) {
   const updateRecipeEntry = {
       title: req.body.journal.title,
@@ -73,4 +57,3 @@ router.delete('/delete/:id', validateSession, function (req, res) {
 });
 
 module.exports = router;
->>>>>>> Stashed changes
