@@ -4,12 +4,9 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const validateSession = require("../middleware/validatesession");
 
-router.get("/id", (req, res) => {
-  User.findOne({
-    where: {
-      id: req.user.id;
-    }
-  })
+router.get("/id", validateSession, (req, res) => {
+  let id = req.user.id;
+  User.findOne({ where: { id: id } })
     .then((user) => res.status(200).json(id))
     .catch((err) => res.status(500).json({ error: err }));
 })
