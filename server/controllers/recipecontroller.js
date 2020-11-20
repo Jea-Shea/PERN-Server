@@ -26,14 +26,6 @@ router.get('/save', function(req,res){
     res.send('send it to the database here?')
 });
 
-router.get('/update', function(req,res){
-    res.send('Add notes and update recipes that were saved')
-});
-
-router.get('/delete', function(req,res){
-    res.send('Get rid of recipes no longer wanted by user')
-});
-
 router.put('/update/:entryId', validateSession, function (req, res) {
   const updateRecipeEntry = {
       title: req.body.journal.title,
