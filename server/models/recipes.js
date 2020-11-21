@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
         instructions: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        user: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     })
     return Recipe;

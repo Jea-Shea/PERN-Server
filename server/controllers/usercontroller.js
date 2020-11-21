@@ -2,6 +2,14 @@ const router = require("express").Router();
 const User = require("../db").import("../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const validateSession = require("../middleware/validatesession");
+
+router.get("/id", validateSession, (req, res) => {
+  let id = req.user.id;
+  User.findOne({ where: { id: id } })
+    .then((user) => res.status(200).json(id))
+    .catch((err) => res.status(500).json({ error: err }));
+})
 
 router.post("/signup", (req, res) => {
   console.log(req.body.user.email);
