@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         user: {
-            type: DataTypes.STRING,
-            allowNull: true
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     })
     return Recipe;

@@ -20,22 +20,24 @@ router.get('/search', function(req,res){
     res.send('Add API recipe search here')
 });
 
-router.get('/', function(req,res){
-    Recipe.findAll()
+router.get('/', validateSession, function(req,res){
+    Recipe.findAll({
+      where: { user: req.user.id }
+    })
     .then(recipes => res.status(200).json(recipes)) //200 means okay
     .catch(err => res.status(500).json({ //500 internal server errpr
         error: err
     }))
 });
 
-router.put('/update/:entryId', validateSession, function (req, res) {
+router.put('/update/:id', validateSession, function (req, res) {
     const updateRecipeEntry = {
-      name: req.body.recipes.name,
-      ingredients: req.body.recipes.ingredients,
-      instructions: req.body.recipes.instructions,
+      name: req.body.name,
+      ingredients: req.body.ingredients,
+      instructions: req.body.instructions,
     };
   
-    const query = { where: { id: req.recipes.id, owner_id: req.user.id }};
+    const query = { where: { id: req.params.id }};
   
     Recipe.update(updateRecipeEntry, query)
         .then((recipes) => res.status(200).json(recipes))
@@ -43,7 +45,7 @@ router.put('/update/:entryId', validateSession, function (req, res) {
   });
   
   router.delete('/delete/:id', validateSession, function (req, res) {
-    const query = { where: { id: req.params.id, owner: req.user.id }};
+    const query = { where: { id: req.params.id, user: req.user.id }};
   
     Recipe.destroy(query)
         .then(() => res.status(200).json({ message: "Recipe Entry Removed!"}))
