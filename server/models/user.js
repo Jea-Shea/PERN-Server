@@ -1,18 +1,23 @@
-
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('user', {
+  return sequelize.define("user", {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     passwordHash: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
-    groceryList: {
-      type: DataTypes.STRING,
-      allowNull: true
+    groceries: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
     },
-  })
-}
+    favorites: {
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
+    },
+  });
+};
