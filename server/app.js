@@ -9,8 +9,8 @@ app.use(express.json());
 
 let user = require("./controllers/usercontroller");
 app.use("/user", user);
-let recipe = require("./controllers/recipecontroller");
-app.use("/recipe", recipe);
+let recipes = require("./controllers/recipecontroller");
+app.use("/recipes", recipes);
 
 app.listen(process.env.PORT, function () {
   console.log(`App is listening on port ${process.env.PORT}`);
