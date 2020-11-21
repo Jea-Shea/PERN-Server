@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const database = require("./db");
 
-database.sync({ force: true });
+database.sync();
 
 app.use(express.json());
 
@@ -12,6 +12,6 @@ app.use("/user", user);
 let recipe = require("./controllers/recipecontroller");
 app.use("/recipe", recipe);
 
-app.listen(3000, function () {
-  console.log("App is listening on port 3000");
+app.listen(process.env.PORT, function () {
+  console.log(`App is listening on port ${process.env.PORT}`);
 });
