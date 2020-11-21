@@ -20,8 +20,10 @@ router.get('/search', function(req,res){
     res.send('Add API recipe search here')
 });
 
-router.get('/', function(req,res){
-    Recipe.findAll()
+router.get('/', validateSession, function(req,res){
+    Recipe.findAll({
+      where: { user: req.user.id }
+    })
     .then(recipes => res.status(200).json(recipes)) //200 means okay
     .catch(err => res.status(500).json({ //500 internal server errpr
         error: err
@@ -43,7 +45,7 @@ router.put('/update/:entryId', validateSession, function (req, res) {
   });
   
   router.delete('/delete/:id', validateSession, function (req, res) {
-    const query = { where: { id: req.params.id, owner: req.user.id }};
+    const query = { where: { id: req.params.id, user: req.user.id }};
   
     Recipe.destroy(query)
         .then(() => res.status(200).json({ message: "Recipe Entry Removed!"}))

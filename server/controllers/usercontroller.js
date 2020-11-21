@@ -9,12 +9,14 @@ router.get("/id", validateSession, (req, res) => {
   User.findOne({ where: { id: id } })
     .then((user) => res.status(200).json(id))
     .catch((err) => res.status(500).json({ error: err }));
-})
+});
 
 router.post("/signup", (req, res) => {
   User.create({
     name: req.body.user.name,
-    email: req.body.user.email, passwordHash: bcrypt.hashSync(req.body.user.passwordHash, 13), })
+    email: req.body.user.email,
+    passwordHash: bcrypt.hashSync(req.body.user.passwordHash, 13),
+  })
     .then(
       (createSuccess = (user) => {
         let token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
@@ -45,14 +47,20 @@ router.put("/update", validateSession, (req, res) => {
             (err, matches) => {
               if (matches) {
                 let userUpdate = {};
-                if (req.body.user.name) { userUpdate.name = req.body.user.name}
-                if (req.body.user.email) { userUpdate.email = req.body.user.email}
-                if (req.body.user.passwordHash) { userUpdate.passwordHash = req.body.user.passwordHash}
+                if (req.body.user.name) {
+                  userUpdate.name = req.body.user.name;
+                }
+                if (req.body.user.email) {
+                  userUpdate.email = req.body.user.email;
+                }
+                if (req.body.user.passwordHash) {
+                  userUpdate.passwordHash = req.body.user.passwordHash;
+                }
                 User.update(userUpdate, {
                   where: {
                     id: req.user.id,
-                  }
-                })
+                  },
+                });
                 res.status(200).json({
                   user: user,
                   message: "User updated",
@@ -120,7 +128,7 @@ router.put("/groceries/update", validateSession, (req, res) => {
     .then((user) => res.status(200).json(user))
     .catch((err) => res.status(500).json({ error: err }));
 });
- 
+
 router.get("/favorites", validateSession, (req, res) => {
   let id = req.user.id;
   User.findOne({ where: { id: id } })
