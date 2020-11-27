@@ -2,9 +2,11 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const database = require("./db");
+const headers = require("./headers/middleware");
 
 database.sync();
 
+app.use(headers);
 app.use(express.json());
 
 let user = require("./controllers/usercontroller");
