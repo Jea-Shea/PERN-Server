@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const database = require("./db");
-const headers = require("./headers/middleware");
+const headers = require("./middleware/headers");
 
 database.sync();
 
